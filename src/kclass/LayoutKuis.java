@@ -7,7 +7,6 @@ package kclass;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.DecimalFormat;
 import java.io.BufferedReader;
 import java.io.File;
@@ -193,118 +192,9 @@ public class LayoutKuis extends JFrame {
         this.setVisible(true);
         
         this.idCSV = idCSV;
-        initBukaFile(url,10);
-        
+        initBukaFile(url,10);   
     }
     
-    private void updateProgress(){
-        int hasil = (banyakDicoba * 100) / maxPertanyaan;
-        progressBar.setValue(hasil);
-        
-        if(banyakDicoba == 0) persentaseBenar = "0";
-        else{
-            Double d = (banyakTepat*1.0/maxPertanyaan)*100;
-            persentaseBenar = new DecimalFormat("0.00").format(d);
-        }
-        labelNilai.setText("Nilai saat ini: " + persentaseBenar + "/100.00");
-    }
-    private void eventLabel(MouseEvent e){
-        if (tombolMulai.getText().equals("Mulai Ujian") || tombolLanjut.isEnabled()){
-            return;
-        }
-        Point p = e.getComponent().getLocation();
-        int loc = -1;
-        for(int i = 0; i < 4; i++){
-            if(p.x == labelJawaban[i].getX() && p.y == labelJawaban[i].getY()){
-                loc = i;
-                break;
-            }
-        }
-        if(loc != -1){
-            banyakDicoba += 1;
-            labelJawaban[letakJawabanTepat].setBackground(Color.GREEN);
-            if (loc == letakJawabanTepat){
-                banyakTepat += 1;
-                teksKomentar.setText(areaTeksTengah("Tepat!"));
-            }
-            else{
-                labelJawaban[loc].setBackground(Color.RED);
-                teksKomentar.setText(areaTeksTengah("Maaf.. Jawabanmu kurang tepat\nJawaban yang benar ditampilkan"));
-            }
-            
-            tombolLanjut.setEnabled(true);
-        }
-        updateProgress();
-    }
-    private void eventTeksJawaban(ActionEvent e){
-        banyakDicoba += 1;
-        if(itemMenuKepala1.isSelected()){
-            if(teksJawaban.getText().toUpperCase().equals(suku1.get(idxTepat).toUpperCase())){
-                banyakTepat += 1;
-                teksKomentar.setText(areaTeksTengah("Tepat!"));
-            }
-            else{
-                teksKomentar.setText(areaTeksTengah("Maaf.. Jawabanmu kurang tepat\nJawaban yang benar ditampilkan"));
-            }
-        }
-        else{
-            if(teksJawaban.getText().toUpperCase().equals(suku2.get(idxTepat).toUpperCase())){
-                banyakTepat += 1;
-                teksKomentar.setText(areaTeksTengah("Tepat!"));
-            }
-            else{
-                teksKomentar.setText(areaTeksTengah("Maaf.. Jawabanmu kurang tepat\nJawaban yang benar ditampilkan"));
-            }
-        }
-        teksJawaban.setEditable(false);
-        tombolLanjut.setEnabled(true);
-        updateProgress();
-        
-    }
-    private void eventBerhenti(){
-        tombolMulai.setText("Mulai Ujian");
-        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai ujian"));
-        labelDiberikan.setText("");
-        for(int i = 0; i < 4; i++){
-            labelJawaban[i].setText("");
-            labelJawaban[i].setBackground(Color.WHITE);
-        }
-        teksJawaban.setText("");
-        tombolLanjut.setEnabled(false);
-        menuOpsi.setEnabled(true);        
-
-        String sOut = "Pertanyaan dicoba: " + banyakDicoba + " dari "+ maxPertanyaan +" pertanyaan"
-                + "\nJawaban tepat: " + banyakTepat + "\nSkor anda: " + persentaseBenar + "%";
-        JOptionPane.showConfirmDialog(null, sOut, judulUjian, 
-                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        
-        String skor = persentaseBenar.substring(0, persentaseBenar.length() - 3); //100.00 -> 100
-        LayoutPengguna.instanceLP.handleFromKuis(skor, idCSV);
-        
-        
-    }
-    private void eventTombolLanjut(ActionEvent e){
-        if(banyakDicoba >= maxPertanyaan){
-            eventBerhenti();
-        }
-        else{
-            pertanyaanSelanjutnya(new Random());
-        }
-    }
-    private void eventTombolMulai(ActionEvent e){
-        if(tombolMulai.getText().equals("Mulai Ujian")){     
-            tombolLanjut.setEnabled(false);
-            tombolMulai.setText("Hentikan Ujian");
-            teksKomentar.setText("");
-            menuOpsi.setEnabled(false);
-            banyakDicoba = 0;
-            banyakTepat = 0;
-            pertanyaanSelanjutnya(new Random());
-        }
-        else{
-            eventBerhenti();
-        }
-    }
     private void initBukaFile(String url, int maxPertanyaan){
         String baris; int indeksKoma;
         suku1 = new ArrayList<>();
@@ -366,113 +256,31 @@ public class LayoutKuis extends JFrame {
             }
         });
     }
-    private void eventItemMenuBuka(ActionEvent e){
-        String baris; int indeksKoma;
-        suku1 = new ArrayList<>();
-        suku2 = new ArrayList<>();
-        JFileChooser pemilihFile = new JFileChooser(".\\src\\csv");
-        pemilihFile.setDialogType(JFileChooser.OPEN_DIALOG);
-        pemilihFile.setDialogTitle("Buka File Ujian");
-        pemilihFile.setAcceptAllFileFilterUsed(false);
-        pemilihFile.addChoosableFileFilter(new FileNameExtensionFilter("File Ujian", "csv"));
-        if(pemilihFile.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
-            try(BufferedReader fileKu = new BufferedReader(new FileReader(pemilihFile.getSelectedFile()))){                 
-                baris = fileKu.readLine();
-                indeksKoma = baris.indexOf(",");
-                judulUjian = baris.substring(0,indeksKoma);
-                
-                baris = fileKu.readLine();
-                indeksKoma = baris.indexOf(",");
-                kepala1 = baris.substring(0,indeksKoma);
-                kepala2 = baris.substring(indeksKoma+1);
-                
-                do{
-                    baris = fileKu.readLine();
-                    indeksKoma = baris.indexOf(",");
-                    suku1.add(baris.substring(0,indeksKoma));
-                    suku2.add(baris.substring(indeksKoma+1));
-                }while(fileKu.ready());
-                
-                banyakSuku = suku1.size();
-                if (banyakSuku < 5){
-                    JOptionPane.showConfirmDialog(null, 
-                            "Pastikan entri file ujian lebih dari 4",
-                            "Error File Ujian",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                JOptionPane.showConfirmDialog(null, pemilihFile.getSelectedFile().getName()+ " dibuka",
-                        "Berhasil", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(Exception ex){
-                JOptionPane.showConfirmDialog(null, 
-                        "Pastikan entri mengikuti format yang benar",
-                        "Error File Ujian",
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-        this.setTitle("Kuis PG - " + judulUjian);
-        itemMenuKepala1.setText(kepala1 + ", jika diberikan " + kepala2 );
-        itemMenuKepala2.setText(kepala2 + ", jika diberikan " + kepala1 );
-        
-        if (itemMenuKepala1.isSelected()){
-            labelDiberikanKepala.setText(kepala2);
-            labelJawabanKepala.setText(kepala1);
+    
+    private void eventTombolMulai(ActionEvent e){
+        if(tombolMulai.getText().equals("Mulai Ujian")){     
+            tombolLanjut.setEnabled(false);
+            tombolMulai.setText("Hentikan Ujian");
+            teksKomentar.setText("");
+            menuOpsi.setEnabled(false);
+            banyakDicoba = 0;
+            banyakTepat = 0;
+            pertanyaanSelanjutnya(new Random());
         }
         else{
-            labelDiberikanKepala.setText(kepala1);
-            labelJawabanKepala.setText(kepala2);
+            eventBerhenti();
         }
-        tombolMulai.setEnabled(true);
-        menuOpsi.setEnabled(true);
-        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai ujian"));
     }
-
-    private void eventItemMenuKepala1(ActionEvent e){
-        labelDiberikanKepala.setText(kepala2);
-        labelJawabanKepala.setText(kepala1);
-    }
-    private void eventItemMenuKepala2(ActionEvent e){
-        labelDiberikanKepala.setText(kepala1);
-        labelJawabanKepala.setText(kepala2);
-    }
-    private void eventItemMenuPG(ActionEvent e){
-        for (int i = 0; i < 4; i++){
-            labelJawaban[i].setVisible(true);
-        }
-        teksJawaban.setVisible(false);
-    }
-    private void eventItemMenuIsian(ActionEvent e){
-        for (int i = 0; i < 4; i++){
-            labelJawaban[i].setVisible(false);
-        }
-        teksJawaban.setVisible(true);
-    }
-    private String areaTeksTengah(String s){
-        int j = s.indexOf("\n");
-        int totalKarakter = 33;
-        String out;
-        if(j == -1){
-            out = "\n" + spasi((int) ((totalKarakter - s.length())/2)) + s;
+    
+    private void eventTombolLanjut(ActionEvent e){
+        if(banyakDicoba >= maxPertanyaan){
+            eventBerhenti();
         }
         else{
-            String baris1 = s.substring(0,j);
-            String baris2 = s.substring(j+1);
-            out = "\n" + spasi((int) ((totalKarakter - baris1.length())/2)) + baris1;
-            out += "\n" + spasi((int) ((totalKarakter - baris2.length())/2)) + baris2;
+            pertanyaanSelanjutnya(new Random());
         }
-        return out;
     }
-    private String spasi(int n){
-        String banyakSpasi = "";
-        while (n >0){
-            banyakSpasi += " ";
-            n--;
-        }
-        return banyakSpasi;
-    }
+    
     private void pertanyaanSelanjutnya(Random r){
         teksKomentar.setText("");
         idxTepat = r.nextInt(banyakSuku);
@@ -518,5 +326,134 @@ public class LayoutKuis extends JFrame {
             teksJawaban.requestFocus();
         }
         tombolLanjut.setEnabled(false);
+    }
+    
+    private void updateProgress(){
+        int hasil = (banyakDicoba * 100) / maxPertanyaan;
+        progressBar.setValue(hasil);
+        
+        if(banyakDicoba == 0) persentaseBenar = "0";
+        else{
+            Double d = (banyakTepat*1.0/maxPertanyaan)*100;
+            persentaseBenar = new DecimalFormat("0.00").format(d);
+        }
+        labelNilai.setText("Nilai saat ini: " + persentaseBenar + "/100.00");
+    }
+    
+    private void eventLabel(MouseEvent e){
+        if (tombolMulai.getText().equals("Mulai Ujian") || tombolLanjut.isEnabled()){
+            return;
+        }
+        JLabel labelKamu = (JLabel) e.getSource(); //ambil jlabel dari klikan mouse
+        
+        banyakDicoba += 1;
+        String jawabanTepat = labelJawaban[letakJawabanTepat].getText();      
+        String jawabanKamu = labelKamu.getText();
+        
+        //Atur skor dan warna background label
+        labelJawaban[letakJawabanTepat].setBackground(Color.GREEN);
+        if (jawabanKamu.equals(jawabanTepat)){          
+            banyakTepat += 1;
+            teksKomentar.setText(areaTeksTengah("Tepat!"));
+        }
+        else{
+            labelKamu.setBackground(Color.RED);
+            teksKomentar.setText(areaTeksTengah("Maaf.. Jawabanmu kurang tepat\nJawaban yang benar ditampilkan"));
+        }
+
+        tombolLanjut.setEnabled(true);        
+        updateProgress();
+    }
+    
+    private void eventTeksJawaban(ActionEvent e){
+        banyakDicoba += 1;
+        if(itemMenuKepala1.isSelected()){
+            if(teksJawaban.getText().toUpperCase().equals(suku1.get(idxTepat).toUpperCase())){
+                banyakTepat += 1;
+                teksKomentar.setText(areaTeksTengah("Tepat!"));
+            }
+            else{
+                teksKomentar.setText(areaTeksTengah("Maaf.. Jawabanmu kurang tepat\nJawaban yang benar ditampilkan"));
+            }
+        }
+        else{
+            if(teksJawaban.getText().toUpperCase().equals(suku2.get(idxTepat).toUpperCase())){
+                banyakTepat += 1;
+                teksKomentar.setText(areaTeksTengah("Tepat!"));
+            }
+            else{
+                teksKomentar.setText(areaTeksTengah("Maaf.. Jawabanmu kurang tepat\nJawaban yang benar ditampilkan"));
+            }
+        }
+        teksJawaban.setEditable(false);
+        tombolLanjut.setEnabled(true);
+        updateProgress();        
+    }
+    
+    private void eventBerhenti(){
+        tombolMulai.setText("Mulai Ujian");
+        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai ujian"));
+        labelDiberikan.setText("");
+        for(int i = 0; i < 4; i++){
+            labelJawaban[i].setText("");
+            labelJawaban[i].setBackground(Color.WHITE);
+        }
+        teksJawaban.setText("");
+        tombolLanjut.setEnabled(false);
+        menuOpsi.setEnabled(true);        
+
+        String sOut = "Pertanyaan dicoba: " + banyakDicoba + " dari "+ maxPertanyaan +" pertanyaan"
+                + "\nJawaban tepat: " + banyakTepat + "\nSkor anda: " + persentaseBenar + "%";
+        JOptionPane.showConfirmDialog(null, sOut, judulUjian, 
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        
+        String skor = persentaseBenar.substring(0, persentaseBenar.length() - 3); //100.00 -> 100
+        LayoutPengguna.instanceLP.handleFromKuis(skor, idCSV);        
+    }
+    
+    private String areaTeksTengah(String s){
+        int j = s.indexOf("\n");
+        int totalKarakter = 33;
+        String out;
+        if(j == -1){
+            out = "\n" + spasi((int) ((totalKarakter - s.length())/2)) + s;
+        }
+        else{
+            String baris1 = s.substring(0,j);
+            String baris2 = s.substring(j+1);
+            out = "\n" + spasi((int) ((totalKarakter - baris1.length())/2)) + baris1;
+            out += "\n" + spasi((int) ((totalKarakter - baris2.length())/2)) + baris2;
+        }
+        return out;
+    }
+    
+    private String spasi(int n){    //untuk areaTeksTengah
+        String banyakSpasi = "";
+        while (n >0){
+            banyakSpasi += " ";
+            n--;
+        }
+        return banyakSpasi;
+    }
+    
+    private void eventItemMenuKepala1(ActionEvent e){
+        labelDiberikanKepala.setText(kepala2);
+        labelJawabanKepala.setText(kepala1);
+    }
+    private void eventItemMenuKepala2(ActionEvent e){
+        labelDiberikanKepala.setText(kepala1);
+        labelJawabanKepala.setText(kepala2);
+    }
+    private void eventItemMenuPG(ActionEvent e){
+        for (int i = 0; i < 4; i++){
+            labelJawaban[i].setVisible(true);
+        }
+        teksJawaban.setVisible(false);
+    }
+    private void eventItemMenuIsian(ActionEvent e){
+        for (int i = 0; i < 4; i++){
+            labelJawaban[i].setVisible(false);
+        }
+        teksJawaban.setVisible(true);
     }
 }
