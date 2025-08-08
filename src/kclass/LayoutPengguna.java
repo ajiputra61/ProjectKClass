@@ -5,7 +5,9 @@
 package kclass;
 
 
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.sql.*;
 import java.util.logging.Level;
@@ -25,7 +27,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
     /**
      * Creates new form LayoutPengguna
      */
-    JLabel[] arrLabel;
+    JLabel[] arrLabel, arrUserLb, arrPointLb;
     JButton[] arrButton;
     JTextField[] arrTF;
     Connection conn;
@@ -78,8 +80,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
         this.setSize(800, 500);
         this.setResizable(false);
         this.setVisible(true);
-        JOptionPane.showConfirmDialog(null, "Halo " + username + ". Selamat datang di K Class!", 
-            null, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showConfirmDialog(null, "Halo " + username + ". Selamat datang di K Class :)", 
+            "Pesan hangat", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
     }
     
     private void refreshList(){
@@ -191,6 +193,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
         nilaiRata = new javax.swing.JLabel();
         labelRata1 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
+        buttonLeaderboard = new javax.swing.JButton();
+        buttonLeaderboard.setAlignmentX(Component.CENTER_ALIGNMENT);
         parentPanel = new javax.swing.JPanel();
         dashboardTugas = new javax.swing.JPanel();
         labelList = new javax.swing.JLabel();
@@ -257,6 +261,53 @@ public class LayoutPengguna extends javax.swing.JFrame {
         arrTF[7] = nilaiK7;
         arrTF[8] = nilaiK8;
         arrTF[9] = nilaiK9;
+        panelLeaderboard = new javax.swing.JPanel();
+        labelLb = new javax.swing.JLabel();
+        comboBoxLb = new javax.swing.JComboBox<>();
+        userLb0 = new javax.swing.JLabel();
+        userLb1 = new javax.swing.JLabel();
+        userLb2 = new javax.swing.JLabel();
+        userLb3 = new javax.swing.JLabel();
+        userLb4 = new javax.swing.JLabel();
+        userLb5 = new javax.swing.JLabel();
+        userLb6 = new javax.swing.JLabel();
+        userLb7 = new javax.swing.JLabel();
+        userLb8 = new javax.swing.JLabel();
+        userLb9 = new javax.swing.JLabel();
+        arrUserLb = new JLabel[10];
+        arrUserLb[0] = userLb0;
+        arrUserLb[1] = userLb1;
+        arrUserLb[2] = userLb2;
+        arrUserLb[3] = userLb3;
+        arrUserLb[4] = userLb4;
+        arrUserLb[5] = userLb5;
+        arrUserLb[6] = userLb6;
+        arrUserLb[7] = userLb7;
+        arrUserLb[8] = userLb8;
+        arrUserLb[9] = userLb9;
+        userLbTitle = new javax.swing.JLabel();
+        pointLbTitle = new javax.swing.JLabel();
+        pointLb0 = new javax.swing.JLabel();
+        pointLb1 = new javax.swing.JLabel();
+        pointLb2 = new javax.swing.JLabel();
+        pointLb3 = new javax.swing.JLabel();
+        pointLb4 = new javax.swing.JLabel();
+        pointLb5 = new javax.swing.JLabel();
+        pointLb6 = new javax.swing.JLabel();
+        pointLb7 = new javax.swing.JLabel();
+        pointLb8 = new javax.swing.JLabel();
+        pointLb9 = new javax.swing.JLabel();
+        arrPointLb = new JLabel[10];
+        arrPointLb[0] = pointLb0;
+        arrPointLb[1] = pointLb1;
+        arrPointLb[2] = pointLb2;
+        arrPointLb[3] = pointLb3;
+        arrPointLb[4] = pointLb4;
+        arrPointLb[5] = pointLb5;
+        arrPointLb[6] = pointLb6;
+        arrPointLb[7] = pointLb7;
+        arrPointLb[8] = pointLb8;
+        arrPointLb[9] = pointLb9;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("K Class - Pengguna");
@@ -317,10 +368,22 @@ public class LayoutPengguna extends javax.swing.JFrame {
         jProgressBar1.setForeground(new java.awt.Color(0, 0, 0));
         jProgressBar1.setStringPainted(true);
 
+        buttonLeaderboard.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        buttonLeaderboard.setText("LEADERBOARD");
+        buttonLeaderboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonLeaderboard.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonLeaderboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLeaderboardActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout StatusUserLayout = new javax.swing.GroupLayout(StatusUser);
         StatusUser.setLayout(StatusUserLayout);
         StatusUserLayout.setHorizontalGroup(
             StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(StatusUserLayout.createSequentialGroup()
                 .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namaUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,24 +392,27 @@ public class LayoutPengguna extends javax.swing.JFrame {
                         .addComponent(profilePicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(labelStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(StatusUserLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(StatusUserLayout.createSequentialGroup()
-                                .addComponent(labelRata)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nilaiRata))
+                                .addGap(14, 14, 14)
+                                .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(StatusUserLayout.createSequentialGroup()
+                                        .addComponent(labelRata)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(nilaiRata))
+                                    .addGroup(StatusUserLayout.createSequentialGroup()
+                                        .addComponent(labelRata1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(StatusUserLayout.createSequentialGroup()
-                                .addComponent(labelRata1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(64, 64, 64)
+                                .addComponent(buttonLogout)))
                         .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(StatusUserLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(buttonLogout)
+                .addGap(51, 51, 51)
+                .addComponent(buttonLeaderboard)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         StatusUserLayout.setVerticalGroup(
             StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,6 +435,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(buttonLeaderboard)
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogout)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -608,14 +676,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dashboardTugasLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelList, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dashboardTugasLayout.createSequentialGroup()
-                        .addComponent(labelK0, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK0, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK0))
+                .addGroup(dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -669,8 +730,17 @@ public class LayoutPengguna extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nilaiK1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK1)))
-                .addContainerGap(253, Short.MAX_VALUE))
+                        .addComponent(attemptK1))
+                    .addGroup(dashboardTugasLayout.createSequentialGroup()
+                        .addGroup(dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelList, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(dashboardTugasLayout.createSequentialGroup()
+                                .addComponent(labelK0, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nilaiK0, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(attemptK0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(485, Short.MAX_VALUE))
         );
         dashboardTugasLayout.setVerticalGroup(
             dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -727,10 +797,215 @@ public class LayoutPengguna extends javax.swing.JFrame {
                     .addComponent(labelK9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(attemptK9)
                     .addComponent(nilaiK9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         parentPanel.add(dashboardTugas, "card2");
+
+        panelLeaderboard.setBackground(new java.awt.Color(0, 102, 102));
+
+        labelLb.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
+        labelLb.setForeground(new java.awt.Color(255, 255, 255));
+        labelLb.setText("TOP 10 LEADERBOARD");
+
+        comboBoxLb.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        comboBoxLb.setForeground(new java.awt.Color(0, 102, 102));
+        comboBoxLb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total Skor", "Rata-rata", "Total Pengerjaan" }));
+        comboBoxLb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxLbActionPerformed(evt);
+            }
+        });
+
+        userLb0.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb0.setForeground(new java.awt.Color(255, 255, 255));
+        userLb0.setText("1. Goku");
+
+        userLb1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb1.setForeground(new java.awt.Color(255, 255, 255));
+        userLb1.setText("2. User 1");
+
+        userLb2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb2.setForeground(new java.awt.Color(255, 255, 255));
+        userLb2.setText("3. User2");
+
+        userLb3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb3.setForeground(new java.awt.Color(255, 255, 255));
+        userLb3.setText("4.");
+
+        userLb4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb4.setForeground(new java.awt.Color(255, 255, 255));
+        userLb4.setText("5.");
+
+        userLb5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb5.setForeground(new java.awt.Color(255, 255, 255));
+        userLb5.setText("6.");
+
+        userLb6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb6.setForeground(new java.awt.Color(255, 255, 255));
+        userLb6.setText("7.");
+
+        userLb7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb7.setForeground(new java.awt.Color(255, 255, 255));
+        userLb7.setText("8.");
+
+        userLb8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb8.setForeground(new java.awt.Color(255, 255, 255));
+        userLb8.setText("9.");
+
+        userLb9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        userLb9.setForeground(new java.awt.Color(255, 255, 255));
+        userLb9.setText("10.");
+
+        userLbTitle.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
+        userLbTitle.setForeground(new java.awt.Color(255, 255, 255));
+        userLbTitle.setText("USERNAME");
+
+        pointLbTitle.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
+        pointLbTitle.setForeground(new java.awt.Color(255, 255, 255));
+        pointLbTitle.setText("TOTAL SKOR");
+
+        pointLb0.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb0.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb0.setText("-");
+
+        pointLb1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb1.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb1.setText("-");
+
+        pointLb2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb2.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb2.setText("-");
+
+        pointLb3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb3.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb3.setText("-");
+
+        pointLb4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb4.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb4.setText("-");
+
+        pointLb5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb5.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb5.setText("-");
+
+        pointLb6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb6.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb6.setText("-");
+
+        pointLb7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb7.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb7.setText("-");
+
+        pointLb8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb8.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb8.setText("-");
+
+        pointLb9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        pointLb9.setForeground(new java.awt.Color(255, 255, 255));
+        pointLb9.setText("-");
+
+        javax.swing.GroupLayout panelLeaderboardLayout = new javax.swing.GroupLayout(panelLeaderboard);
+        panelLeaderboard.setLayout(panelLeaderboardLayout);
+        panelLeaderboardLayout.setHorizontalGroup(
+            panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                        .addComponent(labelLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(86, 86, 86)
+                        .addComponent(comboBoxLb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLeaderboardLayout.createSequentialGroup()
+                        .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                                .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(userLb9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(userLb2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                                .addComponent(userLbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(9, 9, 9)))
+                        .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pointLbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(pointLb9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pointLb2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(497, 497, 497))
+        );
+        panelLeaderboardLayout.setVerticalGroup(
+            panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLb)
+                    .addComponent(comboBoxLb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                        .addComponent(userLbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb0, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLb9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLeaderboardLayout.createSequentialGroup()
+                        .addComponent(pointLbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb0, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pointLb9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        parentPanel.add(panelLeaderboard, "card3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -743,7 +1018,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(StatusUser, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+            .addComponent(StatusUser, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
             .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -886,6 +1161,27 @@ public class LayoutPengguna extends javax.swing.JFrame {
     }//GEN-LAST:event_nilaiK0ActionPerformed
     
 
+    private void comboBoxLbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxLbActionPerformed
+        // TODO add your handling code here:
+        int pilihan = comboBoxLb.getSelectedIndex(); //total skor = 0; rata rata = 1; total pengerjaan = 2
+        eventLeaderboard(pilihan);
+    }//GEN-LAST:event_comboBoxLbActionPerformed
+
+    private void buttonLeaderboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLeaderboardActionPerformed
+        // TODO add your handling code here:
+        if(buttonLeaderboard.getText().equals("LEADERBOARD")){
+            buttonLeaderboard.setText("LIST KUIS");
+            CardLayout cards = (CardLayout) parentPanel.getLayout();
+            cards.show(parentPanel,"card3");//ke leaderboard
+            comboBoxLb.setSelectedIndex(0);
+            eventLeaderboard(0);
+        } else{
+            buttonLeaderboard.setText("LEADERBOARD");
+            CardLayout cards = (CardLayout) parentPanel.getLayout();
+            cards.show(parentPanel,"card2");//ke kuis
+        }
+    }//GEN-LAST:event_buttonLeaderboardActionPerformed
+
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
         try {
             ps.close();
@@ -896,7 +1192,67 @@ public class LayoutPengguna extends javax.swing.JFrame {
         new LayoutLogin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonLogoutActionPerformed
+  
+    private void eventLeaderboard(int pilihan){
+        try {
+            Statement st = conn.createStatement();
+            String statementPilihan = "";
+            switch (pilihan) {
+                case 0 -> {
+                    pointLbTitle.setText("TOTAL SKOR");
+                    statementPilihan = "SELECT idUser, SUM(score) FROM kScore GROUP BY idUser ORDER BY SUM(score) DESC";
+                }
+                case 1 -> {
+                    pointLbTitle.setText("RATA-RATA");
+                    statementPilihan = "SELECT idUser, AVG(score) FROM kScore GROUP BY idUser ORDER BY AVG(score) DESC";
+                }
+                case 2 -> {
+                    pointLbTitle.setText("TOTAL PENGERJAAN");
+                    statementPilihan = "SELECT idUser, COUNT(*) FROM kScore GROUP BY idUser ORDER BY COUNT(*) DESC";
+                }
+                default -> {
+                }
+            }
+            ResultSet rs = st.executeQuery(statementPilihan);   //ambil data
+            
+            PreparedStatement ps2 = conn.prepareStatement("SELECT username FROM kUser WHERE idUser = ?"); //untuk ambil username           
+            //loop dari yang paling besar
+            int i = 0;
+            while(rs.next()){
+                //ambil username dulu
+                ps2.setString(1, rs.getString("idUser"));
+                ResultSet rs2 = ps2.executeQuery();
+                String username = "";
+                while(rs2.next()) username = rs2.getString("username");
 
+                //set label
+                arrUserLb[i].setText((i+1) + ". " + username);
+                switch (pilihan) {
+                    case 0 -> arrPointLb[i].setText(rs.getString("SUM(score)"));
+                    case 1 -> arrPointLb[i].setText(rs.getString("AVG(score)"));
+                    case 2 -> arrPointLb[i].setText(rs.getString("COUNT(*)"));
+                    default -> {
+                    }
+                }
+                rs2.close();
+                i++;
+
+                //jika sudah ada 10, keluar loop
+                if(i >= 10) break;
+            }
+            while(i < 10){
+                //kosongkan label jika database sudah selesai loop, namun belum ada 10 peringkat
+                arrUserLb[i].setText("");
+                arrPointLb[i].setText("");
+                i++;
+            }
+            rs.close();
+            st.close();
+            ps2.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel StatusUser;
@@ -910,7 +1266,9 @@ public class LayoutPengguna extends javax.swing.JFrame {
     private javax.swing.JButton attemptK7;
     private javax.swing.JButton attemptK8;
     private javax.swing.JButton attemptK9;
+    private javax.swing.JButton buttonLeaderboard;
     private javax.swing.JButton buttonLogout;
+    private javax.swing.JComboBox<String> comboBoxLb;
     private javax.swing.JPanel dashboardTugas;
     private javax.swing.ButtonGroup grupOpsi;
     private javax.swing.ButtonGroup grupPGIsian;
@@ -927,6 +1285,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
     private javax.swing.JLabel labelK7;
     private javax.swing.JLabel labelK8;
     private javax.swing.JLabel labelK9;
+    private javax.swing.JLabel labelLb;
     private javax.swing.JLabel labelList;
     private javax.swing.JLabel labelRata;
     private javax.swing.JLabel labelRata1;
@@ -943,7 +1302,30 @@ public class LayoutPengguna extends javax.swing.JFrame {
     private javax.swing.JTextField nilaiK8;
     private javax.swing.JTextField nilaiK9;
     private javax.swing.JLabel nilaiRata;
+    private javax.swing.JPanel panelLeaderboard;
     private javax.swing.JPanel parentPanel;
+    private javax.swing.JLabel pointLb0;
+    private javax.swing.JLabel pointLb1;
+    private javax.swing.JLabel pointLb2;
+    private javax.swing.JLabel pointLb3;
+    private javax.swing.JLabel pointLb4;
+    private javax.swing.JLabel pointLb5;
+    private javax.swing.JLabel pointLb6;
+    private javax.swing.JLabel pointLb7;
+    private javax.swing.JLabel pointLb8;
+    private javax.swing.JLabel pointLb9;
+    private javax.swing.JLabel pointLbTitle;
     private javax.swing.JLabel profilePicture;
+    private javax.swing.JLabel userLb0;
+    private javax.swing.JLabel userLb1;
+    private javax.swing.JLabel userLb2;
+    private javax.swing.JLabel userLb3;
+    private javax.swing.JLabel userLb4;
+    private javax.swing.JLabel userLb5;
+    private javax.swing.JLabel userLb6;
+    private javax.swing.JLabel userLb7;
+    private javax.swing.JLabel userLb8;
+    private javax.swing.JLabel userLb9;
+    private javax.swing.JLabel userLbTitle;
     // End of variables declaration//GEN-END:variables
 }
