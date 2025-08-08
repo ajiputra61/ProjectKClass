@@ -5,6 +5,7 @@
 package kclass;
 
 
+import java.awt.Color;
 import java.awt.Image;
 import java.sql.*;
 import java.util.logging.Level;
@@ -34,14 +35,9 @@ public class LayoutPengguna extends javax.swing.JFrame {
 
 
     public LayoutPengguna(String idSession, String username) {
-        this.setLocationRelativeTo(null);
-        this.setSize(800, 600);
-        this.setResizable(false);
         initComponents();
         initDB();
         initSession(idSession, username);
-        this.setVisible(true);
-                    
     }
     
     private void initDB() {
@@ -78,7 +74,11 @@ public class LayoutPengguna extends javax.swing.JFrame {
         
         refreshList();  
         
-        JOptionPane.showConfirmDialog(null, "Selamat datang " + username + " di K Class!", 
+        this.setLocationRelativeTo(null);
+        this.setSize(800, 500);
+        this.setResizable(false);
+        this.setVisible(true);
+        JOptionPane.showConfirmDialog(null, "Halo " + username + ". Selamat datang di K Class!", 
             null, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
     }
     
@@ -108,7 +108,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
                 }
                 else{
                     arrButton[i].setText("Attempt");
-                    arrTF[i].setText("Nilai: ");
+                    arrTF[i].setText("Nilai: - ");
                 }
                 totalKuis++;
                 rsLoop.close();
@@ -116,14 +116,25 @@ public class LayoutPengguna extends javax.swing.JFrame {
                 i++;
             }
             for(int j = i; j <10; j++){
-                arrLabel[j].setText("Kuis : ");
+                arrLabel[j].setText("Kuis X : - ");
                 arrButton[j].setEnabled(false);
-                arrTF[j].setText("Nilai: ");
+                arrTF[j].setText("Nilai: - ");
             }
             rs.close();
             
+            if(totalPengerjaan == 0){
+                nilaiRata.setForeground(Color.RED);
+                nilaiRata.setText("0.0");
+            }else{
+                Double rata = totalSkor*1.0/totalPengerjaan;
+                if (rata > 80) nilaiRata.setForeground(Color.GREEN);
+                else if(rata > 45) nilaiRata.setForeground(Color.YELLOW);
+                else nilaiRata.setForeground(Color.RED);
+                String formatRata = String.format("%.2f", rata);
+                nilaiRata.setText(formatRata);
+            }
             jProgressBar1.setValue(totalPengerjaan*100/totalKuis);
-            nilaiRata.setText(Double.toString(totalSkor*1.0/totalPengerjaan));
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,18 +265,23 @@ public class LayoutPengguna extends javax.swing.JFrame {
         StatusUser.setBorder(new javax.swing.border.MatteBorder(null));
         StatusUser.setPreferredSize(new java.awt.Dimension(202, 100));
 
+        profilePicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         profilePicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blankpp.png"))); // NOI18N
         profilePicture.setMaximumSize(new java.awt.Dimension(162, 162));
         profilePicture.setMinimumSize(new java.awt.Dimension(162, 162));
 
         namaUser.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        namaUser.setForeground(new java.awt.Color(255, 255, 255));
+        namaUser.setForeground(new java.awt.Color(153, 255, 153));
+        namaUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         namaUser.setText("MANUSIA");
         namaUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         labelStatus.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         labelStatus.setForeground(new java.awt.Color(153, 255, 153));
-        labelStatus.setText("Status Pengerjaan");
+        labelStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelStatus.setText("STATUS PENGERJAAN");
+        labelStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        labelStatus.setVerifyInputWhenFocusTarget(false);
 
         labelRata.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelRata.setForeground(new java.awt.Color(255, 255, 255));
@@ -279,8 +295,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
         jSeparator2.setMinimumSize(new java.awt.Dimension(50, 50));
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        buttonLogout.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        buttonLogout.setText("Logout");
+        buttonLogout.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        buttonLogout.setText("LOGOUT");
         buttonLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,59 +304,58 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiRata.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        nilaiRata.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         nilaiRata.setForeground(new java.awt.Color(0, 255, 0));
-        nilaiRata.setText("100");
+        nilaiRata.setText("0");
 
         labelRata1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelRata1.setForeground(new java.awt.Color(255, 255, 255));
         labelRata1.setText("Progress:");
 
-        jProgressBar1.setBackground(new java.awt.Color(0, 0, 0));
-        jProgressBar1.setForeground(new java.awt.Color(153, 255, 153));
-        jProgressBar1.setValue(100);
+        jProgressBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jProgressBar1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jProgressBar1.setForeground(new java.awt.Color(0, 0, 0));
         jProgressBar1.setStringPainted(true);
 
         javax.swing.GroupLayout StatusUserLayout = new javax.swing.GroupLayout(StatusUser);
         StatusUser.setLayout(StatusUserLayout);
         StatusUserLayout.setHorizontalGroup(
             StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(StatusUserLayout.createSequentialGroup()
                 .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(StatusUserLayout.createSequentialGroup()
-                        .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(StatusUserLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(StatusUserLayout.createSequentialGroup()
-                                        .addComponent(labelRata)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nilaiRata))
-                                    .addGroup(StatusUserLayout.createSequentialGroup()
-                                        .addComponent(labelRata1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(StatusUserLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(buttonLogout)))
-                        .addGap(0, 25, Short.MAX_VALUE))
                     .addComponent(namaUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(StatusUserLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(profilePicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(profilePicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(StatusUserLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(StatusUserLayout.createSequentialGroup()
+                                .addComponent(labelRata)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nilaiRata))
+                            .addGroup(StatusUserLayout.createSequentialGroup()
+                                .addComponent(labelRata1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(StatusUserLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(buttonLogout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         StatusUserLayout.setVerticalGroup(
             StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(StatusUserLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(67, 67, 67)
                 .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaUser)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelStatus)
@@ -349,12 +364,12 @@ public class LayoutPengguna extends javax.swing.JFrame {
                     .addComponent(labelRata)
                     .addComponent(nilaiRata))
                 .addGap(10, 10, 10)
-                .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelRata1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelRata1)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(buttonLogout)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -363,7 +378,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
 
         dashboardTugas.setBackground(new java.awt.Color(0, 102, 102));
 
-        labelList.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelList.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
         labelList.setForeground(new java.awt.Color(255, 255, 255));
         labelList.setText("LIST KUIS");
 
@@ -416,7 +431,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK0.setText("Nilai: ");
+        nilaiK0.setText("Nilai: -");
         nilaiK0.setEnabled(false);
         nilaiK0.setFocusable(false);
         nilaiK0.addActionListener(new java.awt.event.ActionListener() {
@@ -506,7 +521,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK1.setText("Nilai: ");
+        nilaiK1.setText("Nilai: -");
         nilaiK1.setEnabled(false);
         nilaiK1.setFocusable(false);
         nilaiK1.addActionListener(new java.awt.event.ActionListener() {
@@ -515,7 +530,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK2.setText("Nilai: ");
+        nilaiK2.setText("Nilai: -");
         nilaiK2.setEnabled(false);
         nilaiK2.setFocusable(false);
         nilaiK2.addActionListener(new java.awt.event.ActionListener() {
@@ -524,7 +539,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK3.setText("Nilai: ");
+        nilaiK3.setText("Nilai: -");
         nilaiK3.setEnabled(false);
         nilaiK3.setFocusable(false);
         nilaiK3.addActionListener(new java.awt.event.ActionListener() {
@@ -533,7 +548,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK4.setText("Nilai: ");
+        nilaiK4.setText("Nilai: -");
         nilaiK4.setEnabled(false);
         nilaiK4.setFocusable(false);
         nilaiK4.addActionListener(new java.awt.event.ActionListener() {
@@ -542,7 +557,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK5.setText("Nilai: ");
+        nilaiK5.setText("Nilai: -");
         nilaiK5.setEnabled(false);
         nilaiK5.setFocusable(false);
         nilaiK5.addActionListener(new java.awt.event.ActionListener() {
@@ -551,7 +566,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK6.setText("Nilai: ");
+        nilaiK6.setText("Nilai: -");
         nilaiK6.setEnabled(false);
         nilaiK6.setFocusable(false);
         nilaiK6.addActionListener(new java.awt.event.ActionListener() {
@@ -560,7 +575,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK7.setText("Nilai: ");
+        nilaiK7.setText("Nilai: -");
         nilaiK7.setEnabled(false);
         nilaiK7.setFocusable(false);
         nilaiK7.addActionListener(new java.awt.event.ActionListener() {
@@ -569,7 +584,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK8.setText("Nilai: ");
+        nilaiK8.setText("Nilai: -");
         nilaiK8.setEnabled(false);
         nilaiK8.setFocusable(false);
         nilaiK8.addActionListener(new java.awt.event.ActionListener() {
@@ -578,7 +593,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
         });
 
-        nilaiK9.setText("Nilai: ");
+        nilaiK9.setText("Nilai: -");
         nilaiK9.setEnabled(false);
         nilaiK9.setFocusable(false);
         nilaiK9.addActionListener(new java.awt.event.ActionListener() {
@@ -593,79 +608,76 @@ public class LayoutPengguna extends javax.swing.JFrame {
             dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dashboardTugasLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelList, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK0, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK0)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nilaiK0, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nilaiK0, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(attemptK0))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK2)
+                        .addComponent(nilaiK2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK2))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK3)
+                        .addComponent(nilaiK3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK3))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK4, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK4)
+                        .addComponent(nilaiK4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK4))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK5)
+                        .addComponent(nilaiK5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK5))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK6)
+                        .addComponent(nilaiK6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK6))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK7)
+                        .addComponent(nilaiK7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK7))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK8, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK8)
+                        .addComponent(nilaiK8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK8))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK9, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK9)
+                        .addComponent(nilaiK9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attemptK9))
                     .addGroup(dashboardTugasLayout.createSequentialGroup()
                         .addComponent(labelK1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attemptK1)
+                        .addComponent(nilaiK1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nilaiK1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(dashboardTugasLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(labelList, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 585, Short.MAX_VALUE))
+                        .addComponent(attemptK1)))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
         dashboardTugasLayout.setVerticalGroup(
             dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dashboardTugasLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(47, 47, 47)
                 .addComponent(labelList)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dashboardTugasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelK0, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(attemptK0)

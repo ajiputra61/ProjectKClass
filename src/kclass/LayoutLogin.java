@@ -76,6 +76,7 @@ public class LayoutLogin extends javax.swing.JFrame {
         jPanelLogin.setBackground(new java.awt.Color(0, 102, 102));
         jPanelLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 255), 5));
         jPanelLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanelLogin.setPreferredSize(new java.awt.Dimension(471, 500));
 
         labelPembuka2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         labelPembuka2.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,7 +135,9 @@ public class LayoutLogin extends javax.swing.JFrame {
 
         warning.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 153, 153));
+        warning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         warning.setText("Username atau Password tidak ditemukan!");
+        warning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         areapassword.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         areapassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -156,18 +159,9 @@ public class LayoutLogin extends javax.swing.JFrame {
         jPanelLoginLayout.setHorizontalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonloginreg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                        .addComponent(warning)
-                        .addGap(107, 107, 107))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                        .addComponent(loginreg)
-                        .addGap(135, 135, 135))))
+                .addContainerGap(148, Short.MAX_VALUE)
+                .addComponent(loginreg)
+                .addGap(135, 135, 135))
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,6 +174,11 @@ public class LayoutLogin extends javax.swing.JFrame {
                         .addComponent(areapassword, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
                     .addComponent(labelPembuka2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buttonloginreg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190))
+            .addComponent(warning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelLoginLayout.setVerticalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +203,7 @@ public class LayoutLogin extends javax.swing.JFrame {
                 .addComponent(loginreg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(warning)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         warning.setVisible(false);
@@ -235,20 +234,17 @@ public class LayoutLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelKClass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deskripsiKClass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelKClass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deskripsiKClass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addComponent(ppTestimoni, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(testimoni)
-                            .addComponent(hTestimoni))
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                            .addComponent(hTestimoni))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -261,23 +257,60 @@ public class LayoutLogin extends javax.swing.JFrame {
                 .addComponent(labelKClass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deskripsiKClass)
-                .addGap(115, 115, 115)
+                .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(hTestimoni)
                         .addGap(12, 12, 12)
                         .addComponent(testimoni))
                     .addComponent(ppTestimoni))
-                .addGap(54, 54, 54))
+                .addGap(75, 75, 75))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void areausernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areausernameActionPerformed
+    private void showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_areausernameActionPerformed
+        if(showpass.isSelected()){
+            areapassword.setEchoChar((char)0);
+        }
+        else{
+            areapassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_showpassActionPerformed
+
+    private void areapasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areapasswordKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isLetterOrDigit(c) && c != '_' && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE){
+            evt.consume(); // consume invalid char
+        }
+    }//GEN-LAST:event_areapasswordKeyTyped
+
+    private void loginregMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginregMouseExited
+        // TODO add your handling code here:
+        loginreg.setForeground(Color.WHITE);
+    }//GEN-LAST:event_loginregMouseExited
+
+    private void loginregMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginregMouseEntered
+        // TODO add your handling code here:
+        loginreg.setForeground(Color.YELLOW);
+    }//GEN-LAST:event_loginregMouseEntered
+
+    private void loginregMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginregMouseClicked
+        // TODO add your handling code here:
+        if(buttonloginreg.getText().equals("Login")){
+            buttonloginreg.setText("Sign up");
+            loginreg.setText("Sudah punya akun? Login disini");
+        }
+        else{ //buttonloginreg = Sign up
+            buttonloginreg.setText("Login");
+            loginreg.setText("Belum ada akun? Sign up disini");
+        }
+
+    }//GEN-LAST:event_loginregMouseClicked
 
     private void buttonloginregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonloginregActionPerformed
         // TODO add your handling code here:
@@ -300,14 +333,14 @@ public class LayoutLogin extends javax.swing.JFrame {
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM kUser");
                 while(rs.next()){
-                    if(username.equals(rs.getString("username")) && pw.equals(rs.getString("pass"))){  
+                    if(username.equals(rs.getString("username")) && pw.equals(rs.getString("pass"))){
                         String idSession = rs.getString("idUser");
                         rs.close();
                         st.close();
                         conn.close();
-                        new LayoutPengguna(idSession,username).setVisible(true);                      
+                        new LayoutPengguna(idSession,username).setVisible(true);
                         this.dispose();
-                        break;                  
+                        break;
                     }
                 }
                 areausername.requestFocus();
@@ -315,8 +348,8 @@ public class LayoutLogin extends javax.swing.JFrame {
                 warning.setVisible(true); //kalau tidak ketemu
             } catch (SQLException ex) {
                 Logger.getLogger(LayoutLogin.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            
+            }
+
         }
         else{
             try{
@@ -326,7 +359,7 @@ public class LayoutLogin extends javax.swing.JFrame {
                 if(rs.next()){
                     warning.setText("Username sudah ada dalam database");
                     warning.setForeground(Color.PINK);
-                    warning.setVisible(true);                  
+                    warning.setVisible(true);
                 } else {
                     PreparedStatement ps2 = conn.prepareStatement("INSERT INTO kUser(username, pass) VALUES (?,?)");
                     ps2.setString(1, areausername.getText());
@@ -334,53 +367,20 @@ public class LayoutLogin extends javax.swing.JFrame {
                     ps2.executeUpdate();
                     ps2.close();
 
-                    JOptionPane.showConfirmDialog(null, "Username "+ areausername.getText() + " berhasil dibuat", 
-                            "Pesan Berhasil", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    
+                    JOptionPane.showConfirmDialog(null, "Username "+ areausername.getText() + " berhasil dibuat",
+                        "Pesan Berhasil", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
                     buttonloginreg.setText("Login");
                     loginreg.setText("Belum ada akun? Sign up disini");
-                }           
+                }
                 ps.close();
                 rs.close();
             } catch(SQLException ex){
                 Logger.getLogger(LayoutLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }//GEN-LAST:event_buttonloginregActionPerformed
-
-    private void loginregMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginregMouseClicked
-        // TODO add your handling code here:
-        if(buttonloginreg.getText().equals("Login")){
-            buttonloginreg.setText("Sign up");
-            loginreg.setText("Sudah punya akun? Login disini");
-        }
-        else{ //buttonloginreg = Sign up
-            buttonloginreg.setText("Login");
-            loginreg.setText("Belum ada akun? Sign up disini");
-        }
-        
-    }//GEN-LAST:event_loginregMouseClicked
-
-    private void showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpassActionPerformed
-        // TODO add your handling code here:
-        if(showpass.isSelected()){
-            areapassword.setEchoChar((char)0);
-        }
-        else{
-            areapassword.setEchoChar('*');
-        }
-    }//GEN-LAST:event_showpassActionPerformed
-
-    private void loginregMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginregMouseEntered
-        // TODO add your handling code here:
-        loginreg.setForeground(Color.YELLOW);
-    }//GEN-LAST:event_loginregMouseEntered
-
-    private void loginregMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginregMouseExited
-        // TODO add your handling code here:
-        loginreg.setForeground(Color.WHITE);
-    }//GEN-LAST:event_loginregMouseExited
 
     private void areausernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areausernameKeyTyped
         // TODO add your handling code here:
@@ -390,13 +390,9 @@ public class LayoutLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_areausernameKeyTyped
 
-    private void areapasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areapasswordKeyTyped
+    private void areausernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areausernameActionPerformed
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if(!Character.isLetterOrDigit(c) && c != '_' && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE){
-            evt.consume(); // consume invalid char
-        }
-    }//GEN-LAST:event_areapasswordKeyTyped
+    }//GEN-LAST:event_areausernameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

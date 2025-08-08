@@ -4,7 +4,9 @@
  */
 package kclass;
 
+import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -20,8 +22,14 @@ public class App {
     }
 
     private void initialize() {
-        try{
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        try{ 
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+            UIManager.getLookAndFeelDefaults().put("nimbusOrange", new Color(127, 255, 191));   //ganti warna jprogressbar
         }
         catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
             System.out.println("Error UI Manager: " + ex);
