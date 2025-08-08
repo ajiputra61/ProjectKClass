@@ -40,17 +40,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="h3" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
-                          <Component id="h4" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
+                          <Component id="labelKClass" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
+                          <Component id="deskripsiKClass" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="ppTestimoni" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="testimoni" min="-2" max="-2" attributes="0"/>
+                          <Component id="hTestimoni" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                   </Group>
@@ -67,17 +67,17 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="h3" min="-2" max="-2" attributes="0"/>
+              <Component id="labelKClass" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="h4" min="-2" max="-2" attributes="0"/>
+              <Component id="deskripsiKClass" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="hTestimoni" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="testimoni" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="ppTestimoni" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
@@ -129,12 +129,12 @@
                       <Component id="showpass" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="teksusername" min="-2" pref="210" max="-2" attributes="0"/>
-                          <Component id="h1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPembuka1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="areausername" alignment="0" max="32767" attributes="0"/>
                           <Component id="tekspassword" min="-2" pref="211" max="-2" attributes="0"/>
                           <Component id="areapassword" alignment="0" pref="362" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="h2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPembuka2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -144,9 +144,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                  <Component id="h1" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelPembuka1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="h2" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelPembuka2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="teksusername" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -169,10 +169,10 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="h2">
+        <Component class="javax.swing.JLabel" name="labelPembuka2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="18" style="1"/>
+              <Font name="Century Gothic" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -234,7 +234,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonloginregActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="h1">
+        <Component class="javax.swing.JLabel" name="labelPembuka1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="24" style="1"/>
@@ -242,7 +242,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Welcome Back!"/>
+            <Property name="text" type="java.lang.String" value="Selamat Datang ~"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="loginreg">
@@ -290,7 +290,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Show Password"/>
+            <Property name="text" type="java.lang.String" value="Tampilkan Password"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showpassActionPerformed"/>
@@ -298,7 +298,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="h3">
+    <Component class="javax.swing.JLabel" name="labelKClass">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="36" style="1"/>
@@ -309,7 +309,7 @@
         <Property name="text" type="java.lang.String" value="K Class"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="h4">
+    <Component class="javax.swing.JLabel" name="deskripsiKClass">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="14" style="3"/>
@@ -320,7 +320,7 @@
         <Property name="text" type="java.lang.String" value="Aplikasi kuis sederhana dengan Java"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="ppTestimoni">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="0"/>
@@ -331,7 +331,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="hTestimoni">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="14" style="1"/>
@@ -342,7 +342,7 @@
         <Property name="text" type="java.lang.String" value="Testimoni dari Alexander Maguire"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="testimoni">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="10" style="0"/>

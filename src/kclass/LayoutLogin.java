@@ -50,21 +50,21 @@ public class LayoutLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelLogin = new javax.swing.JPanel();
-        h2 = new javax.swing.JLabel();
+        labelPembuka2 = new javax.swing.JLabel();
         areausername = new javax.swing.JTextField();
         teksusername = new javax.swing.JLabel();
         tekspassword = new javax.swing.JLabel();
         buttonloginreg = new javax.swing.JButton();
-        h1 = new javax.swing.JLabel();
+        labelPembuka1 = new javax.swing.JLabel();
         loginreg = new javax.swing.JLabel();
         warning = new javax.swing.JLabel();
         areapassword = new javax.swing.JPasswordField();
         showpass = new javax.swing.JCheckBox();
-        h3 = new javax.swing.JLabel();
-        h4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelKClass = new javax.swing.JLabel();
+        deskripsiKClass = new javax.swing.JLabel();
+        ppTestimoni = new javax.swing.JLabel();
+        hTestimoni = new javax.swing.JLabel();
+        testimoni = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("K Class");
@@ -77,9 +77,9 @@ public class LayoutLogin extends javax.swing.JFrame {
         jPanelLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 255), 5));
         jPanelLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        h2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        h2.setForeground(new java.awt.Color(255, 255, 255));
-        h2.setText("Sign in untuk mengakses Dashboard KClass");
+        labelPembuka2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        labelPembuka2.setForeground(new java.awt.Color(255, 255, 255));
+        labelPembuka2.setText("Sign in untuk mengakses Dashboard KClass");
 
         areausername.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         areausername.addActionListener(new java.awt.event.ActionListener() {
@@ -113,9 +113,9 @@ public class LayoutLogin extends javax.swing.JFrame {
             }
         });
 
-        h1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        h1.setForeground(new java.awt.Color(255, 255, 255));
-        h1.setText("Welcome Back!");
+        labelPembuka1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        labelPembuka1.setForeground(new java.awt.Color(255, 255, 255));
+        labelPembuka1.setText("Selamat Datang ~");
 
         loginreg.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         loginreg.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,7 +144,7 @@ public class LayoutLogin extends javax.swing.JFrame {
         });
 
         showpass.setForeground(new java.awt.Color(255, 255, 255));
-        showpass.setText("Show Password");
+        showpass.setText("Tampilkan Password");
         showpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showpassActionPerformed(evt);
@@ -174,20 +174,20 @@ public class LayoutLogin extends javax.swing.JFrame {
                     .addComponent(showpass)
                     .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(teksusername, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(h1)
+                        .addComponent(labelPembuka1)
                         .addComponent(areausername)
                         .addComponent(tekspassword, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(areapassword, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
-                    .addComponent(h2))
+                    .addComponent(labelPembuka2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLoginLayout.setVerticalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(h1)
+                .addComponent(labelPembuka1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(h2)
+                .addComponent(labelPembuka2)
                 .addGap(57, 57, 57)
                 .addComponent(teksusername)
                 .addGap(10, 10, 10)
@@ -209,25 +209,25 @@ public class LayoutLogin extends javax.swing.JFrame {
 
         warning.setVisible(false);
 
-        h3.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        h3.setForeground(new java.awt.Color(0, 51, 51));
-        h3.setText("K Class");
+        labelKClass.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        labelKClass.setForeground(new java.awt.Color(0, 51, 51));
+        labelKClass.setText("K Class");
 
-        h4.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
-        h4.setForeground(new java.awt.Color(0, 51, 51));
-        h4.setText("Aplikasi kuis sederhana dengan Java");
+        deskripsiKClass.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
+        deskripsiKClass.setForeground(new java.awt.Color(0, 51, 51));
+        deskripsiKClass.setText("Aplikasi kuis sederhana dengan Java");
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sigmacart.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        ppTestimoni.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ppTestimoni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sigmacart.png"))); // NOI18N
+        ppTestimoni.setText("jLabel1");
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("Testimoni dari Alexander Maguire");
+        hTestimoni.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        hTestimoni.setForeground(new java.awt.Color(0, 102, 102));
+        hTestimoni.setText("Testimoni dari Alexander Maguire");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("\"Aplikasi ini sangat membantu hidup saya\"");
+        testimoni.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        testimoni.setForeground(new java.awt.Color(0, 102, 102));
+        testimoni.setText("\"Aplikasi ini sangat membantu hidup saya\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,15 +239,15 @@ public class LayoutLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(h3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(h4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelKClass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deskripsiKClass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(40, 40, 40)
+                        .addComponent(ppTestimoni, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(testimoni)
+                            .addComponent(hTestimoni))
                         .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -258,16 +258,16 @@ public class LayoutLogin extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(h3)
+                .addComponent(labelKClass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(h4)
+                .addComponent(deskripsiKClass)
                 .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(hTestimoni)
                         .addGap(12, 12, 12)
-                        .addComponent(jLabel3))
-                    .addComponent(jLabel1))
+                        .addComponent(testimoni))
+                    .addComponent(ppTestimoni))
                 .addGap(54, 54, 54))
         );
 
@@ -403,18 +403,18 @@ public class LayoutLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField areapassword;
     private javax.swing.JTextField areausername;
     private javax.swing.JButton buttonloginreg;
-    private javax.swing.JLabel h1;
-    private javax.swing.JLabel h2;
-    private javax.swing.JLabel h3;
-    private javax.swing.JLabel h4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel deskripsiKClass;
+    private javax.swing.JLabel hTestimoni;
     private javax.swing.JPanel jPanelLogin;
+    private javax.swing.JLabel labelKClass;
+    private javax.swing.JLabel labelPembuka1;
+    private javax.swing.JLabel labelPembuka2;
     private javax.swing.JLabel loginreg;
+    private javax.swing.JLabel ppTestimoni;
     private javax.swing.JCheckBox showpass;
     private javax.swing.JLabel tekspassword;
     private javax.swing.JLabel teksusername;
+    private javax.swing.JLabel testimoni;
     private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }
