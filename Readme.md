@@ -2,23 +2,24 @@
 
 # Data Diri
 
-Nama: Aji Putra Pamungkas
-NPM: 50423097
-Kelas: 2IA25
+Nama: Aji Putra Pamungkas<br>
+NPM: 50423097<br>
+Kelas: 2IA25<br>
 
 # Keterangan Projek
 
-Projek ini terinspirasi dari v class gunadarma
-Projek ini merupakan aplikasi desktop menggunakan Java
-Projek ini dibuat untuk user melakukan beberapa kuis, dimana kuis-kuis tersebut merupakan csv
-Projek ini menerapkan database sehingga dapat membuat dan menyimpan lebih dari satu user/session
+Projek ini terinspirasi dari v class gunadarma <br>
+Projek ini merupakan aplikasi desktop menggunakan Java <br>
+Projek ini dibuat untuk user melakukan beberapa kuis, dimana kuis-kuis tersebut merupakan file csv <br>
+Projek ini menerapkan database sehingga dapat membuat dan menyimpan lebih dari satu user/session <br>
+Saya ingin membuat projek ini agar mempunyai leaderboard dan mode admin <br>
 
 # Platform dan Dependansi yang Digunakan
 
-APACHE NETBEANS 25
-JDK 24 WINDOWS X64 (JAVA ANT)
-MYSQL SHELL & WORKBENCH 8.0.43
-MYSQL CONNECTOR /J 9.4.0
+APACHE NETBEANS 25 <br>
+JDK 24 WINDOWS X64 (JAVA ANT) <br>
+MYSQL SHELL & WORKBENCH 8.0.43 <br>
+MYSQL CONNECTOR /J 9.4.0 <br>
 
 # Inisialisasi Database Awal dengan mySql
 
