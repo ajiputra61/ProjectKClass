@@ -33,6 +33,7 @@ public class App {
                 LayoutLogin frame = new LayoutLogin();
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
             }
         });
       

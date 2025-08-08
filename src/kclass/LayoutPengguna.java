@@ -5,11 +5,14 @@
 package kclass;
 
 
+import java.awt.Image;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -33,43 +36,51 @@ public class LayoutPengguna extends javax.swing.JFrame {
     public LayoutPengguna(String idSession, String username) {
         this.setLocationRelativeTo(null);
         this.setSize(800, 600);
+        this.setResizable(false);
         initComponents();
         initDB();
+        initSession(idSession, username);
+        this.setVisible(true);
+                    
+    }
+    
+    private void initDB() {
+        String url = "jdbc:mysql://localhost:3306/kclassDB?useSSL=true";
+        String username = "root";
+        String password = "adminkurukuru_2";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, username, password);
+            System.out.println("Koneksi sukses Layout Pengguna");
+        } catch (Exception e){
+            System.out.println("Exception: " + e);
+        }
+    }
+    
+    private void initSession(String idSession, String username){
         namaUser.setText(username);
         this.idSession = idSession;
-        instanceLP = this;    
+        instanceLP = this;   
+        this.setTitle("K Class - " + username);
         try {
             ps = conn.prepareStatement("SELECT score FROM kScore WHERE idUser = ? AND idCSV = ?");
         } catch (SQLException ex) {
             Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
         }
-        refreshList();       
+        
+        int iconWidth = 100;
+        int iconHeight = 100;
+        String pathSrc = "/images/Profile/" + Character.toUpperCase(username.charAt(0)) + ".png";
+        Image originalIcon = (new ImageIcon(getClass().getResource(pathSrc))).getImage();
+        Image scaledImg = originalIcon.getScaledInstance(iconWidth, iconHeight, Image.SCALE_SMOOTH);
+        profilePicture.setIcon(new ImageIcon(scaledImg));
+        
+        refreshList();  
+        
+        JOptionPane.showConfirmDialog(null, "Selamat datang " + username + " di K Class!", 
+            null, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    public void handleFromKuis(String score, String idCSV){
-        try {
-            ps.setString(1,idSession); ps.setString(2,idCSV);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()){ //ada
-                int skorDB = rs.getInt("score");
-                if(Integer.parseInt(score) > skorDB){
-                    PreparedStatement ps2 = conn.prepareStatement("UPDATE kScore SET score = ? WHERE idUser = ? AND idCSV = ?");
-                    ps2.setString(1, score); ps2.setString(2, idSession); ps2.setString(3, idCSV);
-                    ps2.executeUpdate();
-                    ps2.close();
-                }       
-            } else{           //tidak ada 
-                PreparedStatement ps2 = conn.prepareStatement("INSERT INTO kScore VALUES (?,?,?)");
-                ps2.setString(1, idSession); ps2.setString(2, idCSV); ps2.setString(3, score);
-                ps2.executeUpdate();
-                ps2.close();
-            }
-            rs.close();
-            refreshList();
-        } catch (SQLException ex) {
-            Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    };
     
     private void refreshList(){
         try {
@@ -120,6 +131,31 @@ public class LayoutPengguna extends javax.swing.JFrame {
         
     }
     
+    public void handleFromKuis(String score, String idCSV){
+        try {
+            ps.setString(1,idSession); ps.setString(2,idCSV);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){ //ada
+                int skorDB = rs.getInt("score");
+                if(Integer.parseInt(score) > skorDB){
+                    PreparedStatement ps2 = conn.prepareStatement("UPDATE kScore SET score = ? WHERE idUser = ? AND idCSV = ?");
+                    ps2.setString(1, score); ps2.setString(2, idSession); ps2.setString(3, idCSV);
+                    ps2.executeUpdate();
+                    ps2.close();
+                }       
+            } else{           //tidak ada 
+                PreparedStatement ps2 = conn.prepareStatement("INSERT INTO kScore VALUES (?,?,?)");
+                ps2.setString(1, idSession); ps2.setString(2, idCSV); ps2.setString(3, score);
+                ps2.executeUpdate();
+                ps2.close();
+            }
+            rs.close();
+            refreshList();
+        } catch (SQLException ex) {
+            Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    };
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,8 +168,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
         grupOpsi = new javax.swing.ButtonGroup();
         grupPGIsian = new javax.swing.ButtonGroup();
         StatusUser = new javax.swing.JPanel();
-        blankpp = new javax.swing.JLabel();
-        blankpp.setHorizontalAlignment(JLabel.CENTER);
+        profilePicture = new javax.swing.JLabel();
+        profilePicture.setHorizontalAlignment(JLabel.CENTER);
         namaUser = new javax.swing.JLabel();
         namaUser.setHorizontalAlignment(JLabel.CENTER);
         labelStatus = new javax.swing.JLabel();
@@ -218,9 +254,9 @@ public class LayoutPengguna extends javax.swing.JFrame {
         StatusUser.setBorder(new javax.swing.border.MatteBorder(null));
         StatusUser.setPreferredSize(new java.awt.Dimension(202, 100));
 
-        blankpp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blankpp.png"))); // NOI18N
-        blankpp.setMaximumSize(new java.awt.Dimension(162, 162));
-        blankpp.setMinimumSize(new java.awt.Dimension(162, 162));
+        profilePicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blankpp.png"))); // NOI18N
+        profilePicture.setMaximumSize(new java.awt.Dimension(162, 162));
+        profilePicture.setMinimumSize(new java.awt.Dimension(162, 162));
 
         namaUser.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         namaUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,14 +330,14 @@ public class LayoutPengguna extends javax.swing.JFrame {
                     .addComponent(namaUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(StatusUserLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(blankpp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(profilePicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         StatusUserLayout.setVerticalGroup(
             StatusUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(StatusUserLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(blankpp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaUser)
                 .addGap(24, 24, 24)
@@ -848,20 +884,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         new LayoutLogin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonLogoutActionPerformed
-    
-    private void initDB() {
-        String url = "jdbc:mysql://localhost:3306/kclassDB?useSSL=true";
-        String username = "root";
-        String password = "adminkurukuru_2";
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, username, password);
-            System.out.println("Koneksi sukses Layout Login");
-        } catch (Exception e){
-            System.out.println("Exception: " + e);
-        }
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel StatusUser;
@@ -875,7 +898,6 @@ public class LayoutPengguna extends javax.swing.JFrame {
     private javax.swing.JButton attemptK7;
     private javax.swing.JButton attemptK8;
     private javax.swing.JButton attemptK9;
-    private javax.swing.JLabel blankpp;
     private javax.swing.JButton buttonLogout;
     private javax.swing.JPanel dashboardTugas;
     private javax.swing.ButtonGroup grupOpsi;
@@ -910,5 +932,6 @@ public class LayoutPengguna extends javax.swing.JFrame {
     private javax.swing.JTextField nilaiK9;
     private javax.swing.JLabel nilaiRata;
     private javax.swing.JPanel parentPanel;
+    private javax.swing.JLabel profilePicture;
     // End of variables declaration//GEN-END:variables
 }

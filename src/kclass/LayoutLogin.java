@@ -25,7 +25,21 @@ public class LayoutLogin extends javax.swing.JFrame {
         initDB();
         initComponents();
     }
-
+       
+    private void initDB() {
+        String url = "jdbc:mysql://localhost:3306/kclassDB?useSSL=true";
+        String username = "root";
+        String password = "adminkurukuru_2";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, username, password);
+            System.out.println("Koneksi sukses Layout Login");
+        } catch (Exception e){
+            System.out.println("Exception: " + e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,11 +60,15 @@ public class LayoutLogin extends javax.swing.JFrame {
         warning = new javax.swing.JLabel();
         areapassword = new javax.swing.JPasswordField();
         showpass = new javax.swing.JCheckBox();
+        h3 = new javax.swing.JLabel();
+        h4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("K Class");
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(102, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
@@ -59,9 +77,9 @@ public class LayoutLogin extends javax.swing.JFrame {
         jPanelLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 255), 5));
         jPanelLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        h2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        h2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         h2.setForeground(new java.awt.Color(255, 255, 255));
-        h2.setText("Saudaranya V Class");
+        h2.setText("Sign in untuk mengakses Dashboard KClass");
 
         areausername.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         areausername.addActionListener(new java.awt.event.ActionListener() {
@@ -95,9 +113,9 @@ public class LayoutLogin extends javax.swing.JFrame {
             }
         });
 
-        h1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        h1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         h1.setForeground(new java.awt.Color(255, 255, 255));
-        h1.setText("SELAMAT DATANG DI K CLASS");
+        h1.setText("Welcome Back!");
 
         loginreg.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         loginreg.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,13 +157,8 @@ public class LayoutLogin extends javax.swing.JFrame {
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                        .addComponent(buttonloginreg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                        .addComponent(h2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                .addComponent(buttonloginreg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
                 .addContainerGap(116, Short.MAX_VALUE)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,17 +177,18 @@ public class LayoutLogin extends javax.swing.JFrame {
                         .addComponent(h1)
                         .addComponent(areausername)
                         .addComponent(tekspassword, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(areapassword, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)))
+                        .addComponent(areapassword, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
+                    .addComponent(h2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLoginLayout.setVerticalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(h1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(h1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(h2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addComponent(h2)
+                .addGap(57, 57, 57)
                 .addComponent(teksusername)
                 .addGap(10, 10, 10)
                 .addComponent(areausername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,8 +209,25 @@ public class LayoutLogin extends javax.swing.JFrame {
 
         warning.setVisible(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sigmacart.jpg"))); // NOI18N
+        h3.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        h3.setForeground(new java.awt.Color(0, 51, 51));
+        h3.setText("K Class");
+
+        h4.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
+        h4.setForeground(new java.awt.Color(0, 51, 51));
+        h4.setText("Aplikasi kuis sederhana dengan Java");
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sigmacart.png"))); // NOI18N
         jLabel1.setText("jLabel1");
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel2.setText("Testimoni dari Alexander Maguire");
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel3.setText("\"Aplikasi ini sangat membantu hidup saya\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,16 +235,40 @@ public class LayoutLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(h3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(h4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel1))
+                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(h3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(h4)
+                .addGap(115, 115, 115)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel1))
+                .addGap(54, 54, 54))
         );
 
         pack();
@@ -227,24 +282,36 @@ public class LayoutLogin extends javax.swing.JFrame {
     private void buttonloginregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonloginregActionPerformed
         // TODO add your handling code here:
         if(buttonloginreg.getText().equals("Login")){
+            String username = areausername.getText();
+            String pw = areapassword.getText();
+            if (username.length() == 0 || pw.length() == 0){
+                warning.setText("Username atau Password tidak boleh kosong");
+                warning.setVisible(true);
+                areausername.requestFocus();
+                return;
+            }
+            if (!Character.isLetter(username.charAt(0))){
+                warning.setText("Karakter username pertama harus berupa alfabet");
+                warning.setVisible(true);
+                areausername.requestFocus();
+                return;
+            }
             try {
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM kUser");
                 while(rs.next()){
-                    if(areausername.getText().equals(rs.getString("username")) && 
-                            areapassword.getText().equals(rs.getString("pass"))){  
-                        String id = rs.getString("idUser");
+                    if(username.equals(rs.getString("username")) && pw.equals(rs.getString("pass"))){  
+                        String idSession = rs.getString("idUser");
                         rs.close();
                         st.close();
                         conn.close();
-                        new LayoutPengguna(id,areausername.getText()).setVisible(true);                      
+                        new LayoutPengguna(idSession,username).setVisible(true);                      
                         this.dispose();
-                        break;
-                        
+                        break;                  
                     }
                 }
+                areausername.requestFocus();
                 warning.setText("Username atau Password tidak ditemukan!");
-                warning.setForeground(Color.PINK);
                 warning.setVisible(true); //kalau tidak ketemu
             } catch (SQLException ex) {
                 Logger.getLogger(LayoutLogin.class.getName()).log(Level.SEVERE, null, ex);
@@ -338,7 +405,11 @@ public class LayoutLogin extends javax.swing.JFrame {
     private javax.swing.JButton buttonloginreg;
     private javax.swing.JLabel h1;
     private javax.swing.JLabel h2;
+    private javax.swing.JLabel h3;
+    private javax.swing.JLabel h4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JLabel loginreg;
     private javax.swing.JCheckBox showpass;
@@ -346,18 +417,4 @@ public class LayoutLogin extends javax.swing.JFrame {
     private javax.swing.JLabel teksusername;
     private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
-
-    private void initDB() {
-        String url = "jdbc:mysql://localhost:3306/kclassDB?useSSL=true";
-        String username = "root";
-        String password = "adminkurukuru_2";
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, username, password);
-            System.out.println("Koneksi sukses Layout Login");
-        } catch (Exception e){
-            System.out.println("Exception: " + e);
-        }
-    }
 }
