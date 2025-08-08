@@ -407,11 +407,11 @@ public class LayoutPengguna extends javax.swing.JFrame {
                             .addGroup(StatusUserLayout.createSequentialGroup()
                                 .addGap(64, 64, 64)
                                 .addComponent(buttonLogout)))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(StatusUserLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(buttonLeaderboard)
+                .addGap(27, 27, 27)
+                .addComponent(buttonLeaderboard, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         StatusUserLayout.setVerticalGroup(
@@ -435,7 +435,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLeaderboard)
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogout)
@@ -806,7 +806,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
 
         labelLb.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
         labelLb.setForeground(new java.awt.Color(255, 255, 255));
-        labelLb.setText("TOP 10 LEADERBOARD");
+        labelLb.setText("LEADERBOARD");
 
         comboBoxLb.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         comboBoxLb.setForeground(new java.awt.Color(0, 102, 102));
@@ -952,7 +952,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         panelLeaderboardLayout.setVerticalGroup(
             panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLeaderboardLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(26, 26, 26)
                 .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLb)
                     .addComponent(comboBoxLb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1002,7 +1002,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
                         .addComponent(pointLb8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pointLb9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         parentPanel.add(panelLeaderboard, "card3");
@@ -1012,7 +1012,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(StatusUser, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(StatusUser, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1242,8 +1242,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
             }
             while(i < 10){
                 //kosongkan label jika database sudah selesai loop, namun belum ada 10 peringkat
-                arrUserLb[i].setText("");
-                arrPointLb[i].setText("");
+                arrUserLb[i].setText((i+1) + ". ");
+                arrPointLb[i].setText("-");
                 i++;
             }
             rs.close();
