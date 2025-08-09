@@ -155,7 +155,7 @@ public class LayoutKuis extends JFrame {
         container.add(tombolLanjut,konstrainGrid);
         tombolLanjut.addActionListener((ActionEvent e) -> eventTombolLanjut(e));
         
-        tombolMulai = new JButton("Mulai Ujian");
+        tombolMulai = new JButton("Mulai Kuis");
         konstrainGrid = new GridBagConstraints();
         konstrainGrid.gridx = 0; konstrainGrid.gridy = 11;
         konstrainGrid.insets = new Insets(0,0,10,0);
@@ -227,7 +227,7 @@ public class LayoutKuis extends JFrame {
         } catch(Exception ex){
             JOptionPane.showConfirmDialog(null, 
                 "Pastikan entri mengikuti format yang benar",
-                "Error File Ujian",
+                "Error File Kuis",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -251,7 +251,7 @@ public class LayoutKuis extends JFrame {
         tombolLanjut.setEnabled(false);
         menuOpsi.setEnabled(true);
         teksJawaban.setEditable(false);
-        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai ujian"));
+        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai kuis"));
         
         addWindowListener(new WindowAdapter(){
             @Override
@@ -262,9 +262,9 @@ public class LayoutKuis extends JFrame {
     }
     
     private void eventTombolMulai(ActionEvent e){
-        if(tombolMulai.getText().equals("Mulai Ujian")){     
+        if(tombolMulai.getText().equals("Mulai Kuis")){     
             tombolLanjut.setEnabled(false);
-            tombolMulai.setText("Hentikan Ujian");
+            tombolMulai.setText("Hentikan Kuis");
             teksKomentar.setText("");
             menuOpsi.setEnabled(false);
             banyakDicoba = 0;
@@ -345,7 +345,7 @@ public class LayoutKuis extends JFrame {
     }
     
     private void eventLabel(MouseEvent e){
-        if (tombolMulai.getText().equals("Mulai Ujian") || tombolLanjut.isEnabled()){
+        if (tombolMulai.getText().equals("Mulai Kuis") || tombolLanjut.isEnabled()){
             return;
         }
         JLabel labelKamu = (JLabel) e.getSource(); //ambil jlabel dari klikan mouse
@@ -395,8 +395,8 @@ public class LayoutKuis extends JFrame {
     }
     
     private void eventBerhenti(){
-        tombolMulai.setText("Mulai Ujian");
-        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai ujian"));
+        tombolMulai.setText("Mulai Kuis");
+        teksKomentar.setText(areaTeksTengah("File telah dimuat\nPilih opsi dan klik mulai kuis"));
         labelDiberikan.setText("");
         for(int i = 0; i < 4; i++){
             labelJawaban[i].setText("");

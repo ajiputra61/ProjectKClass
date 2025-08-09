@@ -1,9 +1,22 @@
-Bahasa Pemrograman dan Tahun Diciptakan,
-Bahasa,Tahun Diciptakan
-Python,1991
-Java,1995
-C,1972
-C++,1985
-JavaScript,1995
-Go,2009
-Rust,2010
+Bahasa Pemrograman dan Pengembangnya,
+Bahasa Pemrograman,Pengembang
+Python,Guido van Rossum
+Java,James Gosling (Sun Microsystems)
+C,Dennis Ritchie (Bell Labs)
+C++,Bjarne Stroustrup
+JavaScript,Brendan Eich (Netscape)
+Go,Robert Griesemer - Rob Pike - Ken Thompson 
+Rust,Graydon Hoare (Mozilla)
+PHP,Rasmus Lerdorf
+Ruby,Yukihiro Matsumoto
+Swift,Chris Lattner (Apple)
+Kotlin,JetBrains
+Perl,Larry Wall
+Scala,Martin Odersky
+TypeScript,Microsoft
+R,Ross Ihaka & Robert Gentleman
+MATLAB,Cleve Moler
+Haskell,Simon Peyton Jones
+Lua,Roberto Ierusalimschy
+D,Walter Bright
+Elixir,José Valim
