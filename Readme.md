@@ -21,7 +21,7 @@ JDK 24 WINDOWS X64 (JAVA ANT) <br>
 MYSQL SHELL & WORKBENCH 8.0.43 <br>
 MYSQL CONNECTOR /J 9.4.0 <br>
 
-# Inisialisasi Database Awal dengan mySql
+### Inisialisasi Database Awal dengan mySql
 
 ```
 CREATE DATABASE kclassDB;
