@@ -37,7 +37,14 @@ public class LayoutKuis extends JFrame {
     ArrayList<String> suku1,suku2;
     String idCSV;
 
-    LayoutKuis(String idCSV, String url){
+    LayoutKuis(String idCSV, String url){    
+        initComponents();
+        //Atur sesi frame ini
+        this.idCSV = idCSV;
+        initBukaFile(url,10);   
+    }
+    
+    private void initComponents(){
         container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints konstrainGrid;
@@ -190,9 +197,6 @@ public class LayoutKuis extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
-        
-        this.idCSV = idCSV;
-        initBukaFile(url,10);   
     }
     
     private void initBukaFile(String url, int maxPertanyaan){

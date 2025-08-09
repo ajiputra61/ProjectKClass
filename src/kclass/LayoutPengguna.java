@@ -40,6 +40,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         initComponents();
         initDB();
         initSession(idSession, username);
+        instanceLP = this;
     }
     
     private void initDB() {
@@ -50,6 +51,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, username, password);
+            ps = conn.prepareStatement("SELECT score FROM kScore WHERE idUser = ? AND idCSV = ?");//untuk ambil nilai
             System.out.println("Koneksi sukses Layout Pengguna");
         } catch (Exception e){
             System.out.println("Exception: " + e);
@@ -58,14 +60,8 @@ public class LayoutPengguna extends javax.swing.JFrame {
     
     private void initSession(String idSession, String username){
         namaUser.setText(username);
-        this.idSession = idSession;
-        instanceLP = this;   
+        this.idSession = idSession;   
         this.setTitle("K Class - " + username);
-        try {
-            ps = conn.prepareStatement("SELECT score FROM kScore WHERE idUser = ? AND idCSV = ?");
-        } catch (SQLException ex) {
-            Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         int iconWidth = 100;
         int iconHeight = 100;
@@ -100,8 +96,9 @@ public class LayoutPengguna extends javax.swing.JFrame {
                 arrLabel[i].setText("Kuis " + idCSV + " : " + nama);
                 arrButton[i].setEnabled(true);
                 
-                ps.setString(2,String.valueOf(idCSV));
-                ResultSet rsLoop = ps.executeQuery();
+                //ps = SELECT score FROM kScore WHERE idUser = ? AND idCSV = ?
+                ps.setString(2,String.valueOf(idCSV));  //ps.setString(1,idSession) 
+                ResultSet rsLoop = ps.executeQuery();   //SELECT score FROM kScore WHERE idUser = idSession AND idCSV = idCSV
                 if(rsLoop.next()){
                     arrButton[i].setText("Reattempt");
                     arrTF[i].setText("Nilai: " + rsLoop.getInt("score"));
@@ -495,25 +492,20 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK0.setText("Attempt");
         attemptK0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK0ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
         nilaiK0.setText("Nilai: -");
         nilaiK0.setEnabled(false);
         nilaiK0.setFocusable(false);
-        nilaiK0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK0ActionPerformed(evt);
-            }
-        });
 
         attemptK1.setBackground(new java.awt.Color(204, 204, 255));
         attemptK1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         attemptK1.setText("Attempt");
         attemptK1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK1ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -522,7 +514,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK2.setText("Attempt");
         attemptK2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK2ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -531,7 +523,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK3.setText("Attempt");
         attemptK3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK3ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -540,7 +532,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK4.setText("Attempt");
         attemptK4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK4ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -549,7 +541,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK5.setText("Attempt");
         attemptK5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK5ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -558,7 +550,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK6.setText("Attempt");
         attemptK6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK6ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -567,7 +559,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK7.setText("Attempt");
         attemptK7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK7ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -576,7 +568,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK8.setText("Attempt");
         attemptK8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK8ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
@@ -585,90 +577,45 @@ public class LayoutPengguna extends javax.swing.JFrame {
         attemptK9.setText("Attempt");
         attemptK9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attemptK9ActionPerformed(evt);
+                attemptButtonPerformed(evt);
             }
         });
 
         nilaiK1.setText("Nilai: -");
         nilaiK1.setEnabled(false);
         nilaiK1.setFocusable(false);
-        nilaiK1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK1ActionPerformed(evt);
-            }
-        });
 
         nilaiK2.setText("Nilai: -");
         nilaiK2.setEnabled(false);
         nilaiK2.setFocusable(false);
-        nilaiK2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK2ActionPerformed(evt);
-            }
-        });
 
         nilaiK3.setText("Nilai: -");
         nilaiK3.setEnabled(false);
         nilaiK3.setFocusable(false);
-        nilaiK3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK3ActionPerformed(evt);
-            }
-        });
 
         nilaiK4.setText("Nilai: -");
         nilaiK4.setEnabled(false);
         nilaiK4.setFocusable(false);
-        nilaiK4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK4ActionPerformed(evt);
-            }
-        });
 
         nilaiK5.setText("Nilai: -");
         nilaiK5.setEnabled(false);
         nilaiK5.setFocusable(false);
-        nilaiK5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK5ActionPerformed(evt);
-            }
-        });
 
         nilaiK6.setText("Nilai: -");
         nilaiK6.setEnabled(false);
         nilaiK6.setFocusable(false);
-        nilaiK6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK6ActionPerformed(evt);
-            }
-        });
 
         nilaiK7.setText("Nilai: -");
         nilaiK7.setEnabled(false);
         nilaiK7.setFocusable(false);
-        nilaiK7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK7ActionPerformed(evt);
-            }
-        });
 
         nilaiK8.setText("Nilai: -");
         nilaiK8.setEnabled(false);
         nilaiK8.setFocusable(false);
-        nilaiK8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK8ActionPerformed(evt);
-            }
-        });
 
         nilaiK9.setText("Nilai: -");
         nilaiK9.setEnabled(false);
         nilaiK9.setFocusable(false);
-        nilaiK9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nilaiK9ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout dashboardTugasLayout = new javax.swing.GroupLayout(dashboardTugas);
         dashboardTugas.setLayout(dashboardTugasLayout);
@@ -800,7 +747,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
-        parentPanel.add(dashboardTugas, "card2");
+        parentPanel.add(dashboardTugas, "dashboardTugas");
 
         panelLeaderboard.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -1005,7 +952,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        parentPanel.add(panelLeaderboard, "card3");
+        parentPanel.add(panelLeaderboard, "panelLeaderboard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1025,142 +972,7 @@ public class LayoutPengguna extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(770, 478));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void attemptK0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK0ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK0.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK0ActionPerformed
-
-    private void attemptK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK1ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK1.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK1ActionPerformed
-
-    private void attemptK2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK2ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK2.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK2ActionPerformed
-
-    private void attemptK3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK3ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK3.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK3ActionPerformed
-
-    private void attemptK4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK4ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK4.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK4ActionPerformed
-
-    private void attemptK5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK5ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK5.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK5ActionPerformed
-
-    private void attemptK6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK6ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK6.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK6ActionPerformed
-
-    private void attemptK7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK7ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK7.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK7ActionPerformed
-
-    private void attemptK8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK8ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK8.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK8ActionPerformed
-
-    private void attemptK9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptK9ActionPerformed
-        // TODO add your handling code here:
-        String nama = labelK9.getText();
-        int idxAkhir = nama.indexOf(":");
-        String idxCSV = nama.substring(4, idxAkhir-1);
-        attemptPerformed(idxCSV);
-    }//GEN-LAST:event_attemptK9ActionPerformed
-
-    private void attemptPerformed(String idxCSV){
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT url FROM kCSV WHERE idCSV = " + idxCSV);
-            if(rs != null && rs.next()){
-                String urlKuis = rs.getString("url");
-                new LayoutKuis(idxCSV, urlKuis);
-            }
-            st.close();
-            rs.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    private void nilaiK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK1ActionPerformed
-
-    private void nilaiK2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK2ActionPerformed
-
-    private void nilaiK3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK3ActionPerformed
-
-    private void nilaiK4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK4ActionPerformed
-
-    private void nilaiK5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK5ActionPerformed
-
-    private void nilaiK6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK6ActionPerformed
-
-    private void nilaiK7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK7ActionPerformed
-
-    private void nilaiK8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK8ActionPerformed
-
-    private void nilaiK9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK9ActionPerformed
-
-    private void nilaiK0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiK0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nilaiK0ActionPerformed
-    
-
+ 
     private void comboBoxLbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxLbActionPerformed
         // TODO add your handling code here:
         int pilihan = comboBoxLb.getSelectedIndex(); //total skor = 0; rata rata = 1; total pengerjaan = 2
@@ -1172,13 +984,13 @@ public class LayoutPengguna extends javax.swing.JFrame {
         if(buttonLeaderboard.getText().equals("LEADERBOARD")){
             buttonLeaderboard.setText("LIST KUIS");
             CardLayout cards = (CardLayout) parentPanel.getLayout();
-            cards.show(parentPanel,"card3");//ke leaderboard
+            cards.show(parentPanel,"panelLeaderboard");//ke leaderboard
             comboBoxLb.setSelectedIndex(0);
             eventLeaderboard(0);
         } else{
             buttonLeaderboard.setText("LEADERBOARD");
             CardLayout cards = (CardLayout) parentPanel.getLayout();
-            cards.show(parentPanel,"card2");//ke kuis
+            cards.show(parentPanel,"dashboardTugas");//ke dashboard kuis
         }
     }//GEN-LAST:event_buttonLeaderboardActionPerformed
 
@@ -1192,6 +1004,32 @@ public class LayoutPengguna extends javax.swing.JFrame {
         new LayoutLogin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonLogoutActionPerformed
+
+    private void attemptButtonPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attemptButtonPerformed
+        JButton tombolAttempt = (JButton) evt.getSource();
+        String teksLabelKuis = "";
+        for(int i = 0; i < 10; i++){
+            if(arrButton[i].equals(tombolAttempt)) {
+                teksLabelKuis = arrLabel[i].getText();
+            }
+        }
+        int idxAkhir = teksLabelKuis.indexOf(":");
+        String idxCSV = teksLabelKuis.substring(4, idxAkhir  - 1);
+        
+        try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT url FROM kCSV WHERE idCSV = " + idxCSV);
+            if(rs != null && rs.next()){
+                String urlKuis = rs.getString("url");
+                new LayoutKuis(idxCSV, urlKuis);
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(LayoutPengguna.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_attemptButtonPerformed
   
     private void eventLeaderboard(int pilihan){
         try {
@@ -1223,13 +1061,17 @@ public class LayoutPengguna extends javax.swing.JFrame {
                 ps2.setString(1, rs.getString("idUser"));
                 ResultSet rs2 = ps2.executeQuery();
                 String username = "";
-                while(rs2.next()) username = rs2.getString("username");
+                if(rs2.next()) username = rs2.getString("username");
 
                 //set label
                 arrUserLb[i].setText((i+1) + ". " + username);
                 switch (pilihan) {
                     case 0 -> arrPointLb[i].setText(rs.getString("SUM(score)"));
-                    case 1 -> arrPointLb[i].setText(rs.getString("AVG(score)"));
+                    case 1 -> {
+                        String avg = rs.getString("AVG(score)");
+                        double avgDouble = Double.parseDouble(avg);
+                        arrPointLb[i].setText(String.format("%.2f", avgDouble));
+                    }
                     case 2 -> arrPointLb[i].setText(rs.getString("COUNT(*)"));
                     default -> {
                     }

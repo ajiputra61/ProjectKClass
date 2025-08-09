@@ -308,7 +308,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card2"/>
+              <CardConstraints cardName="dashboardTugas"/>
             </Constraint>
           </Constraints>
 
@@ -490,6 +490,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Kuis 1 :  Provinsi - Ibukota"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LayoutPengguna_labelK0"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="labelK1">
               <Properties>
@@ -604,7 +607,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK0ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK0">
@@ -613,9 +616,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK0ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK1">
               <Properties>
@@ -628,7 +628,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK2">
@@ -642,7 +642,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK3">
@@ -656,7 +656,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK4">
@@ -670,7 +670,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK5">
@@ -684,7 +684,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK6">
@@ -698,7 +698,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK7">
@@ -712,7 +712,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK7ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK8">
@@ -726,7 +726,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK8ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="attemptK9">
@@ -740,7 +740,7 @@
                 <Property name="text" type="java.lang.String" value="Attempt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptK9ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attemptButtonPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="arrButton = new JButton[10];&#xd;&#xa;arrButton[0] = attemptK0;&#xd;&#xa;arrButton[1] = attemptK1;&#xd;&#xa;arrButton[2] = attemptK2;&#xd;&#xa;arrButton[3] = attemptK3;&#xd;&#xa;arrButton[4] = attemptK4;&#xd;&#xa;arrButton[5] = attemptK5;&#xd;&#xa;arrButton[6] = attemptK6;&#xd;&#xa;arrButton[7] = attemptK7;&#xd;&#xa;arrButton[8] = attemptK8;&#xd;&#xa;arrButton[9] = attemptK9;"/>
@@ -752,9 +752,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK1ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK2">
               <Properties>
@@ -762,9 +759,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK2ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK3">
               <Properties>
@@ -772,9 +766,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK3ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK4">
               <Properties>
@@ -782,9 +773,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK4ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK5">
               <Properties>
@@ -792,9 +780,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK5ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK6">
               <Properties>
@@ -802,9 +787,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK6ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK7">
               <Properties>
@@ -812,9 +794,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK7ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK8">
               <Properties>
@@ -822,9 +801,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK8ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nilaiK9">
               <Properties>
@@ -832,9 +808,6 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nilaiK9ActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="arrTF = new JTextField[10];&#xd;&#xa;arrTF[0] = nilaiK0;&#xd;&#xa;arrTF[1] = nilaiK1;&#xd;&#xa;arrTF[2] = nilaiK2;&#xd;&#xa;arrTF[3] = nilaiK3;&#xd;&#xa;arrTF[4] = nilaiK4;&#xd;&#xa;arrTF[5] = nilaiK5;&#xd;&#xa;arrTF[6] = nilaiK6;&#xd;&#xa;arrTF[7] = nilaiK7;&#xd;&#xa;arrTF[8] = nilaiK8;&#xd;&#xa;arrTF[9] = nilaiK9;"/>
               </AuxValues>
@@ -849,7 +822,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card3"/>
+              <CardConstraints cardName="panelLeaderboard"/>
             </Constraint>
           </Constraints>
 
